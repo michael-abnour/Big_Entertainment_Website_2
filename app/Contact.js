@@ -22,6 +22,7 @@ import { Toast } from "primereact/toast";
 import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Slide1 = ({
   request,
@@ -30,39 +31,8 @@ const Slide1 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 0) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.clientFirstName.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your First Name",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.clientFirstName, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -74,7 +44,7 @@ const Slide1 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter First Name"
                 value={request.clientFirstName}
                 onChange={(e) => {
                   setRequest({ ...request, clientFirstName: e.target.value });
@@ -86,12 +56,7 @@ const Slide1 = ({
               <Button
                 onClick={(e) => {
                   if (request.clientFirstName.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your First Name",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Your First Name");
                   } else {
                     handleNextClick();
                   }
@@ -119,37 +84,10 @@ const Slide2 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 1) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.clientLastName.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Last Name",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.clientLastName, swiperInstance]);
+  // const toast = useRef(null);
   return (
     <>
-      <Toast ref={toast} />
+      {/* <Toast ref={toast} /> */}
 
       <Container>
         <Grid container>
@@ -162,7 +100,7 @@ const Slide2 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter Last Name"
                 value={request.clientLastName}
                 onChange={(e) => {
                   setRequest({ ...request, clientLastName: e.target.value });
@@ -174,12 +112,7 @@ const Slide2 = ({
               <Button
                 onClick={(e) => {
                   if (request.clientLastName.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Last Name",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Your Last Name");
                   } else {
                     handleNextClick();
                   }
@@ -207,39 +140,8 @@ const Slide3 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 2) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.clientPhone.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Phone Number",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.clientPhone, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -251,7 +153,7 @@ const Slide3 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter Phone Number"
                 value={request.clientPhone}
                 onChange={(e) => {
                   setRequest({ ...request, clientPhone: e.target.value });
@@ -263,12 +165,7 @@ const Slide3 = ({
               <Button
                 onClick={(e) => {
                   if (request.clientPhone.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Phone Number",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Your Phone Number");
                   } else {
                     handleNextClick();
                   }
@@ -297,39 +194,8 @@ const Slide4 = ({
   swiperInstance,
 }) => {
   const [clientFirstName, setClientFirstName] = useState("");
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 3) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.eventName.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Event Name",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.eventName, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -353,12 +219,7 @@ const Slide4 = ({
               <Button
                 onClick={(e) => {
                   if (request.eventName.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Event Name",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Event Name");
                   } else {
                     handleNextClick();
                   }
@@ -387,30 +248,8 @@ const Slide5 = ({
   swiperInstance,
 }) => {
   const [clientFirstName, setClientFirstName] = useState("");
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 3) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            handleNextClick();
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.budget, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -459,40 +298,9 @@ const Slide6 = ({
   swiperInstance,
 }) => {
   const [clientFirstName, setClientFirstName] = useState("");
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          console.log(swiperInstance);
-          if (swiperInstance.activeIndex == 4) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.eventTime.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Event Time",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
 
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.eventTime, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -520,12 +328,7 @@ const Slide6 = ({
               <Button
                 onClick={(e) => {
                   if (request.eventTime.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Event Time",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Event Time");
                   } else {
                     handleNextClick();
                   }
@@ -554,12 +357,9 @@ const Slide7 = ({
   swiperInstance,
 }) => {
   const [clientFirstName, setClientFirstName] = useState("");
-  const toast = useRef(null);
 
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -571,7 +371,7 @@ const Slide7 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter The Artist You Want"
                 value={request.artiestName}
                 onChange={(e) =>
                   setRequest({ ...request, artiestName: e.target.value })
@@ -608,39 +408,8 @@ const Slide8 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 6) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.eventLocation.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Event Location",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.eventLocation, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -652,7 +421,7 @@ const Slide8 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter Event Location"
                 value={request.eventLocation}
                 onChange={(e) =>
                   setRequest({ ...request, eventLocation: e.target.value })
@@ -664,12 +433,7 @@ const Slide8 = ({
               <Button
                 onClick={(e) => {
                   if (request.eventLocation.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Event Location",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Event Location");
                   } else {
                     handleNextClick();
                   }
@@ -697,12 +461,8 @@ const Slide9 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -756,38 +516,9 @@ const Slide10 = ({
   swiperInstance,
 }) => {
   const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 9) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.companyName.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Company Name",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
 
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.companyName, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -799,7 +530,7 @@ const Slide10 = ({
               <MdOutlineDriveFileRenameOutline />
               <InputText
                 required
-                placeholder="Search"
+                placeholder="Enter Company Name"
                 value={request.companyName}
                 onChange={(e) => {
                   setRequest({ ...request, companyName: e.target.value });
@@ -811,12 +542,7 @@ const Slide10 = ({
               <Button
                 onClick={(e) => {
                   if (request.companyName.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Company Name",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Company Name");
                   } else {
                     handleNextClick();
                   }
@@ -844,39 +570,8 @@ const Slide11 = ({
   handleNextClick,
   swiperInstance,
 }) => {
-  const toast = useRef(null);
-  useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.keyCode === 13) {
-        if (swiperInstance) {
-          if (swiperInstance.activeIndex == 10) {
-            // Enter key pressed
-            // Call the function to go to the next slide
-            if (request.duration.length == 0) {
-              toast.current.show({
-                severity: "info",
-                summary: "Info",
-                detail: "Please Enter Your Event Duration",
-                life: 3000,
-              });
-            } else {
-              handleNextClick();
-            }
-          }
-        }
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [request.duration, swiperInstance]);
   return (
     <>
-      <Toast ref={toast} />
-
       <Container>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -900,12 +595,7 @@ const Slide11 = ({
               <Button
                 onClick={(e) => {
                   if (request.duration.length == 0) {
-                    toast.current.show({
-                      severity: "info",
-                      summary: "Info",
-                      detail: "Please Enter Your Event Duration",
-                      life: 3000,
-                    });
+                    toast.error("Please Enter Event Duration");
                   } else {
                     handleNextClick();
                   }
@@ -1118,7 +808,7 @@ const FinalSlide = ({
 };
 export default function App() {
   const [swiperInstance, setSwiperInstance] = useState(null);
-  const [done, setIsDone] = useState(true);
+  const [done, setIsDone] = useState(false);
 
   const initializeAOS = () => {
     AOS.init({
@@ -1151,7 +841,7 @@ export default function App() {
     eventName: "",
     budget: 0,
     eventTime: "",
-    artiestName: "",
+    artiestName: "N/A",
     eventLocation: "",
     descreptionEvent: "",
     companyName: "",
