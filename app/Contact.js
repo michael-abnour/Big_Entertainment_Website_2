@@ -1118,7 +1118,7 @@ const FinalSlide = ({
 };
 export default function App() {
   const [swiperInstance, setSwiperInstance] = useState(null);
-  const [done, setIsDone] = useState(false);
+  const [done, setIsDone] = useState(true);
 
   const initializeAOS = () => {
     AOS.init({
